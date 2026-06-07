@@ -1,70 +1,83 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>MyLoveMessageForChescka</title>
+    <title>Im Sorry Baby.</title>
 
     <style>
         body {
-            background: black;
-            color: hotpink;
+            margin: 10px;
+            min-height: 100vh;
+            background: Black;
+            color: goldenrod;
             font-family: monospace;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            overflow: hidden;
         }
 
         .box {
-            border: 2px solid hotpink;
-            padding: 30px;
-            width: 500px;
+            width: 360px;
+            min-height: 260px;
+            background: hotpink;
+            border-radius: 24px;
+            border: 5px solid White;
+            box-shadow: 0 0 30px rgba(255, 105, 180, 0.6);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-
-            box-shadow: 0 0 20px hotpink;
-
-            animation: flicker 0.1s infinite alternate;
+            padding: 24px;
+            box-sizing: border-box;
+            overflow: hidden;
         }
 
-        h1 {
-            text-shadow: 0 0 10px hotpink;
+        .box h1 {
+            margin: 0 0 12px;
+            font-size: 28px;
+            letter-spacing: 1px;
+            color: black;
+            text-shadow: 0 0 8px white;
+            cursor: pointer;
         }
 
-        #text {
-            min-height: 60px;
+        .box p {
+            margin: 0;
+            color: black;
+            font-size: 16px;
+            min-height: 80px;
+            line-height: 1.5;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            max-width: 100%;
         }
 
-        @keyframes flicker {
-            from { opacity: 1; }
-            to { opacity: 0.85; }
+        .box h1:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 
 <body>
+    <div class="box">
+        <h1 id="clickTarget">CLICK HERE</h1>
+        <p id="text">Tap the big letters to read the message.</p>
+    </div>
 
-<div class="box">
-    <h1>MY LOVE MESSAGE FOR CHESCKA</h1>
-    <p id="text">Click anywhere to continue.</p>
-</div>
-
-<!-- Typing Sound -->
-<audio id="TypeSound">
-    <source src="index_message_2.wav" type="audio/mpeg">
-</audio>
-
-<audio id="endSound">
-    <source src="index_message_1.wav" type="audio/mpeg">
-</audio>
-<script>
+    <audio id="TypeSound">
+        <source src="CLicking.wav" type="audio/mpeg">
+    </audio>
+    <script>
 
 const messages = [
-    "Hello My Love, You Are The Most Beautiful Person I Have Ever Met.",
-    "I Want You To Know How Much I Care About You.",
-    "You Make My Heart Skip A Beat Every Time I See You.",
-    "You Are The Light Of My Life.",
-    "I Love You More Than Words Can Express."
-];
+    "Hello Baby, I’m Sorry For What Happened Last Night. I know I was Being A Jerk.",
+    "I Just Want You To Know That I Care About You A lot And I Want To Make Things Right Between Us.",
+    "I Know I Messed Up And I Want To Do Better. Please Forgive Me And Give Me A Chance To Show You How Much I Care About you.",
+    "I Promise To Be More Understanding And Supportive In The Future. I Love you And I Want To Make Things Work Between Us."
+];"Im Very Sorry For What Happened Baby, I Love You so much."
+"-Jayden."
+
+const spacedMessages = messages.map(msg => msg.split("").join(" "));
 
 let index = 0;
 let typing = false;
@@ -100,15 +113,10 @@ function typeMessage(message) {
 
 }
 
-document.body.addEventListener("click", () => {
-
-    typeMessage(messages[index]);
-
-    index++;
-
-    if (index >= messages.length) {
-        index = 0;
-    }
+const clickTarget = document.getElementById("clickTarget");
+clickTarget.addEventListener("click", () => {
+    typeMessage(spacedMessages[index]);
+    index = (index + 1) % spacedMessages.length;
 });
 
 </script>
